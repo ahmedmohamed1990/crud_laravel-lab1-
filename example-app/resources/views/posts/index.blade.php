@@ -11,31 +11,39 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
-                <th scope="col">Posted By</th>
-                <th scope="col">Created At</th>
+                <th scope="col">descraption</th>
+                <th scope="col">posted by</th>
+                <th scope="col">create at</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody>
             
-            @foreach ( $allposts as  $index=>$post);
-              <tr>
-                <td>{{$index}}</td>
-                <td>{{$post['title']}}</td>
-                <td>{{$post['describtion']}}</td>
-                <td>{{$post['posted_by']}}</td>
-                
-                <td>
-                    <a href="{{route('posts.show', ['post' => $index])}}" class="btn btn-info">View</a>
-                    <a href="{{route('posts.edit', ['post' => $index])}}" class="btn btn-primary">Edit</a>
-                    <form style="display: inline;" method="post" action="{{route('posts.destroy',['post'=>$index])}}">
-                  @csrf
+            @foreach ( $allPosts as $post);
+            <tr>
+                <td>{{$post->id}}</th>
+                <td>{{$post->title}}</td>
+                <td>{{$post->description}}</td>
+
+                <td>{{$post->user ? $post->user->name : 'Not Found'}}</td>
+                <td>{{$post['created_at']}}</td>
+                <td style="text-align: center">
+                    <a href="{{route('posts.show', ['post' => $post['id']])}}" class="btn btn-info">View</a>
+                    <a href="{{route('posts.edit', ['post' => $post['id']])}}" class="btn btn-primary">Edit</a>
+                    <form action="{{route('posts.destroy', ['post' => $post['id']])}}" method="post"  class="d-inline-block">
+                    @csrf
                     @method('DELETE')
-                    <button type="submit" onclick="return confirm('Are you sure, you want Delete this row?')" class="btn btn-danger">Delete</button>
-</form>
+                    <button href="" onclick="return confirm('Are you sure, you want Delete?')"  class="btn btn-danger">Delete</button>
+
+
+                    </form>
                 </td>
               </tr>
               @endforeach
             </tbody>
           </table>
+          <!-- Pagination  -->
+          <div class="flex justify-center items-center mt-10">
+              {!! $allPosts->links() !!}
+          </div>
 @endsection
