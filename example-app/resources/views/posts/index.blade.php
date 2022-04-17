@@ -11,7 +11,7 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
-                <th scope="col">descraption</th>
+                
                 <th scope="col">posted by</th>
                 <th scope="col">create at</th>
                 <th scope="col">Actions</th>
@@ -23,10 +23,10 @@
             <tr>
                 <td>{{$post->id}}</th>
                 <td>{{$post->title}}</td>
-                <td>{{$post->description}}</td>
+                
 
                 <td>{{$post->user ? $post->user->name : 'Not Found'}}</td>
-                <td>{{$post['created_at']}}</td>
+                <td>{{\Carbon\Carbon::parse($post['created_at'])->format('M-d-Y')}}</td>
                 <td style="text-align: center">
                     <a href="{{route('posts.show', ['post' => $post['id']])}}" class="btn btn-info">View</a>
                     <a href="{{route('posts.edit', ['post' => $post['id']])}}" class="btn btn-primary">Edit</a>
@@ -42,8 +42,15 @@
               @endforeach
             </tbody>
           </table>
-          <!-- Pagination  -->
           <div class="flex justify-center items-center mt-10">
               {!! $allPosts->links() !!}
           </div>
 @endsection
+<style>
+  svg{
+    width:30px;
+  }
+  nav p{
+    margin: 20px 10px;
+  }
+</style>
