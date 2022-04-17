@@ -12,6 +12,7 @@ class Post extends Model
         'title',
         'description',
         'user_id',
+        'avatar'
     ];
 
     public function user()
@@ -21,6 +22,14 @@ class Post extends Model
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 
   

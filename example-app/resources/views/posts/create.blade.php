@@ -2,7 +2,7 @@
 @section('title') create post @endsection
 
 @section('content')
-        <form class="col-6 mx-auto my-5" method="POST" action="{{route('posts.store')}}"> 
+        <form class="col-6 mx-auto my-5" method="POST" action="{{route('posts.store')}}" enctype="multipart/form-data"> 
             @csrf
             <div class="mb-3">
               <label for="exampleInputTitle" class="form-label">Title</label>
@@ -22,6 +22,10 @@
               @endforeach
             </select>
        </div>
+       <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Image</label>
+        <input id="avatar" type="file" class="form-control" name="avatar">
+    </div>
 
 
              

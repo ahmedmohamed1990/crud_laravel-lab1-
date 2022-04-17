@@ -11,9 +11,10 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
-                
+                <th scope="col">slug</th>
                 <th scope="col">posted by</th>
                 <th scope="col">create at</th>
+                <th scope="col">Avatar</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
@@ -21,12 +22,18 @@
             
             @foreach ( $allPosts as $post);
             <tr>
-                <td>{{$post->id}}</th>
+                <td>{{$post->id}}</td>
                 <td>{{$post->title}}</td>
+                <td>{{$post->slug}}</td>
                 
 
+                
                 <td>{{$post->user ? $post->user->name : 'Not Found'}}</td>
                 <td>{{\Carbon\Carbon::parse($post['created_at'])->format('M-d-Y')}}</td>
+                @if($post->avatar)
+                <img class="image rounded-circle" src="{{asset('/storage/images/'.$post->avatar)}}" alt="profile_image" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">
+                @endif
+                </td>
                 <td style="text-align: center">
                     <a href="{{route('posts.show', ['post' => $post['id']])}}" class="btn btn-info">View</a>
                     <a href="{{route('posts.edit', ['post' => $post['id']])}}" class="btn btn-primary">Edit</a>

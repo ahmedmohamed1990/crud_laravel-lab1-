@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
-use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\StoreRequest;
 
 class PostController extends Controller
 {
@@ -29,14 +29,21 @@ class PostController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(StoreRequest $request)
     {
         $data = request()->all();
 
+        if ($request->hasFile('avatar')) {
+            $filename = time() . $request->avatar->getClientOriginalName();
+            // dd($photo);
+            $request->avatar->storeAs('images', $filename, 'public');
+
+        }
         Post::create([
             'title' => $data['title'],
             'description' => $data['description'],
             'user_id' => $data['post_creator'],
+            'avatar'=>$filename,
 
         ]);
 
@@ -76,6 +83,17 @@ class PostController extends Controller
             'user_id'=>$request->post_creator,
 
         ]);
+        if ($request->hasFile('avatar')) {
+
+            $file = $request->file('avatar');
+            $extention = $file->getClientOriginalName();
+            $filename = time() . $extention;
+            // dd($filename);
+            $file->storeAs('images', $filename, 'public');
+            $postToUpdate->avatar = $filename;
+
+        }
+        $postToUpdate->save();
         return redirect()->route('posts.index');
     }
 

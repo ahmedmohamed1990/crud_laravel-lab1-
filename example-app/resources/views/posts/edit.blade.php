@@ -3,10 +3,11 @@
 @section('title')edit @endsection
 
 @section('content')
-<form class="col-6 mx-auto my-5" method="POST" action="{{route('posts.update',['post' => $post['id']])}}"> 
+<form class="col-6 mx-auto my-5" method="POST" action="{{route('posts.update',['post' => $post['id']])}}" enctype="multipart/form-data"> 
         @csrf
         @method('PUT')
         <div class="mb-3">
+        
             <label for="exampleFormControlInput1" class="form-label">Title</label>
             <input type="text" name="title" class="form-control" id="exampleFormControlInput1" value="{{$post['title']}}">
           </div>
@@ -23,6 +24,13 @@
               @endforeach
             </select>
        </div>
+       @if($post->avatar)
+
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Image</label>
+    <input id="avatar" type="file" class="form-control" name="avatar">
+</div>
+@endif
 
           <div class="mb-3">
                 <button type="submit" class="btn btn-success">update Post</button>

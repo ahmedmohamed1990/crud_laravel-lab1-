@@ -13,6 +13,29 @@
     
   </div>
 </div>
+<<<<<<< HEAD
+    <div class="card-header">Post Creator Info</div>
+
+    <div class="card-body">
+      @if($post->avatar)
+                <img class="image rounded-circle" src="{{asset('/storage/images/'.$post->avatar)}}" alt="profile_image" style="width: 100px;height: 100px; padding: 10px; margin: 0px; ">
+            @endif
+      <div class="p-2">
+       <h5 class="card-title" style="font-size:18px;display:inline;">Name:-</h5>
+       <p class="card-text" style="display:inline;">{{$post->user ? $post->user->name : 'Not Found'}}</p>
+    </div>
+    <div class="p-2">
+        <h5 class="card-title" style="font-size:18px;display:inline;">Email:-</h5>
+        <p class="card-text" style="display:inline;">{{$post->user ? $post->user->email : 'Not Found'}}</p>
+    </div>
+    <div class="p-2">
+        <h5 class="card-title" style="font-size:18px;display:inline;">Created At:-</h5>
+    <p class="card-text" style="display:inline;">{{$post->created_at->format('l jS \of F Y h:i:s A')}}</p>
+      </div>
+      <div class="p-2">
+      <h5 class="card-title" style="font-size:18px;display:inline;">Slug:-</h5>
+    <p class="card-text" style="display:inline;">{{$post->slug}}</p>
+=======
 <div class="card">
   <div class="card-header">
     info of create
