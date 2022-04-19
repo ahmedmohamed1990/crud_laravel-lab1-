@@ -12,13 +12,22 @@
     <h5 class="card-title" > Description:- {{$post['description']}}</h5>
     
   </div>
+  <div class="p-2">
+      <h5 class="card-title" style="font-size:18px;display:inline;">Slug:-</h5>
+    <p class="card-text" style="display:inline;">{{$post->slug}}</p>
+    
+
+               
 </div>
-<<<<<<< HEAD
+</div>
+
     <div class="card-header">Post Creator Info</div>
+  
 
     <div class="card-body">
       @if($post->avatar)
-                <img class="image rounded-circle" src="{{asset('/storage/images/'.$post->avatar)}}" alt="profile_image" style="width: 100px;height: 100px; padding: 10px; margin: 0px; ">
+      <div class="my-4 img-fluid w-sm-20 rounded mx-auto d-block">
+                <img class="image rounded-circle" src="{{asset('images/'.$post->avatar)}}" alt={{$post->title."avatar"}} style="width: 100px;height: 100px; padding: 10px; margin: 0px; ">
             @endif
       <div class="p-2">
        <h5 class="card-title" style="font-size:18px;display:inline;">Name:-</h5>
@@ -32,34 +41,7 @@
         <h5 class="card-title" style="font-size:18px;display:inline;">Created At:-</h5>
     <p class="card-text" style="display:inline;">{{$post->created_at->format('l jS \of F Y h:i:s A')}}</p>
       </div>
-      <div class="p-2">
-      <h5 class="card-title" style="font-size:18px;display:inline;">Slug:-</h5>
-    <p class="card-text" style="display:inline;">{{$post->slug}}</p>
-=======
-<div class="card">
-  <div class="card-header">
-    info of create
-  </div>
-  <div class="card-body ">
-        <h5 class="card-title fs-4">
-            <span class="fw-bold">Name:</span>
-            <p class="d-inline-block card-text text-muted">
-                {{$post->user ? $post->user->name : 'Not Found'}}
-            </p>
-        </h5>
-        <h5 class="card-title fs-4">
-            <span class="fw-bold">Email:</span>
-            <p class="d-inline-block card-text text-muted">
-                {{$post->user ? $post->user->email : 'Not Found'}}
-            </p>
-        </h5>
-        <h5 class="card-title fs-4">
-            <span class="fw-bold">Created At:</span>
-            <p class="d-inline-block card-text text-muted">
-            {{$post->created_at->format('l jS \of F Y h:i:s A')}}
-            </p>
-        </h5>
-</div>
+    
 
 <div class="card my-4">
     <div class="card-header fw-bold fs-1">

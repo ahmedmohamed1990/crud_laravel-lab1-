@@ -1,5 +1,6 @@
 <?php
 
+
 return [
 
     /*
@@ -229,7 +230,27 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        /*
+     * Package Service Providers...
+     */
+    Laravel\Socialite\SocialiteServiceProvider::class,
 
     ],
+     /*
+    |--------------------------------------------------------------------------
+    | Class Aliases
+    |--------------------------------------------------------------------------
+    |
+    | This array of class aliases will be registered when this application
+    | is started. However, feel free to register as many as you wish as
+    | the aliases are "lazy" loaded so they don't hinder performance.
+    |
+    */
 
+    // 'aliases' => Facade::defaultAliases()->merge([
+    //     // 'ExampleClass' => App\Example\ExampleClass::class,
+    //     'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+
+    // ])->toArray(),
+   
 ];

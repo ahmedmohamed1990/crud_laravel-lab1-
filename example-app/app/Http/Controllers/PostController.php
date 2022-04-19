@@ -43,9 +43,11 @@ class PostController extends Controller
             'title' => $data['title'],
             'description' => $data['description'],
             'user_id' => $data['post_creator'],
+           // 'slug' => Str::of($data['title'])->slug('-'),
             'avatar'=>$filename,
 
         ]);
+        $request->avatar->move(public_path('images'), $filename); 
 
         return redirect()->route('posts.index');;
     }
@@ -88,12 +90,12 @@ class PostController extends Controller
             $file = $request->file('avatar');
             $extention = $file->getClientOriginalName();
             $filename = time() . $extention;
-            // dd($filename);
+            
             $file->storeAs('images', $filename, 'public');
-            $postToUpdate->avatar = $filename;
+            $updatePosts->avatar = $filename;
 
         }
-        $postToUpdate->save();
+        $updatePosts->save();
         return redirect()->route('posts.index');
     }
 

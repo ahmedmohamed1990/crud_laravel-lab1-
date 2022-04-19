@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
-
+use App\Http\Controllers\GoogleSocialiteController;
+ 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,3 +42,16 @@ Route::patch('/comments/{postId}/{commentId}', [CommentController::class, 'edit'
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+use Laravel\Socialite\Facades\Socialite;
+ 
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+});
+ 
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('github')->user();
+ dd($user);});
+ 
+ Route::get('auth/google', [GoogleSocialiteController::class, 'redirectToGoogle']);
+ Route::get('callback/google', [GoogleSocialiteController::class, 'handleCallback']);
